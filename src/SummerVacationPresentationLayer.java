@@ -39,15 +39,21 @@ public class SummerVacationPresentationLayer {
         System.out.println("Welcome to your summer vacation planner! Please enter an activity name to see potential vacation options!");
         Scanner activityScanner = new Scanner(System.in);
         String activityName = activityScanner.nextLine();
-        List<String> parks = dal.TryGetDestinationForActivity(activityName);
+        List<String> parks = dal.tryGetDestinationForActivity(activityName);
         for (int i = 0; i < parks.size(); i++) {
             System.out.println(parks.get(i));
         }
     }
 
     private static void inputDataForOtherPurpose() {
-        // Implement logic to input data for some other purpose
-        System.out.println("You chose to input data a new park.");
-        // Add your logic here
+        SummerVacationDAL dal = GetDAL();
+        System.out.println("Welcome to your summer vacation planner! Please enter an activity name to see potential vacation options!");
+        try (Scanner activityScanner = new Scanner(System.in)) {
+            String activityName = activityScanner.nextLine();
+            List<String> parks = dal.tryGetDestinationForActivity(activityName);
+            for (int i = 0; i < parks.size(); i++) {
+                System.out.println(parks.get(i));
+            }
+        }
     }
 }
