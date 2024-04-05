@@ -1,3 +1,4 @@
+package main;
 import java.io.Console;
 import java.util.List;
 import java.util.Scanner;
@@ -10,10 +11,21 @@ public class SummerVacationPresentationLayer {
         String userName = credentialScanner.nextLine();
         System.out.print("Enter password: ");
         Console console = System.console();
-        char[] password = console.readPassword();
+        char[] password = getPasswordFromConsole() ;
         return new SummerVacationDAL("Vacation", userName, new String(password));
     }
-
+    private static char[] getPasswordFromConsole() {
+        Console console = System.console();
+        if (console != null) {
+            return console.readPassword();
+        } else {
+            // Console is not available (e.g., running from an IDE), fallback to Scanner
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter password: ");
+            return scanner.nextLine().toCharArray();
+        }
+    }
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose an option:");

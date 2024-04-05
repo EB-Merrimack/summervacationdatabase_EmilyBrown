@@ -1,3 +1,4 @@
+package main;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class SummerVacationDAL {
     private static void initializeConnection(String databaseName, String user, String password) {
         try {
             if (connection == null || connection.isClosed()) { // Check if connection is null or closed
+                databaseName="vacation";
                 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + databaseName, user, password);
             }
         } catch (SQLException exception) {
